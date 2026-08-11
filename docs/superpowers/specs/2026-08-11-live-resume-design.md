@@ -47,9 +47,13 @@ Chat rides skillfaber's existing prod infra — no servers here.
 
 Seed content: `JhorlinResume.docx` (Gmail, sent 2024-01-22, thread
 "Jhorlin Resume" — user downloads it into the repo), then updated with
-2024–2026 work. Current role: **Architect II at PDI Technologies** (PDIQ is
-his current job's flagship work); **skillfaber** is his independent side
-venture. A Zod schema validates the content module.
+2024–2026 work. Current role: **Architect II at PDI Technologies**
+(March 2024 – present; PDIQ is this role's flagship work). Prior:
+**Director of Software Development at Kazzcade** (January 2017 –
+January 2024). **skillfaber** is his independent side venture. Source
+material staged in gitignored `content-sources/` (contains references'
+personal contact info — never commit or publish). A Zod schema validates
+the content module.
 
 Featured credentials (both in `projects[]` and their `experience[]` entries):
 
