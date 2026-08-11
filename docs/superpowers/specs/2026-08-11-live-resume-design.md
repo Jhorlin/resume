@@ -45,12 +45,14 @@ Chat rides skillfaber's existing prod infra — no servers here.
 
 Seed content: `JhorlinResume.docx` (Gmail, sent 2024-01-22, thread
 "Jhorlin Resume" — user downloads it into the repo), then updated with
-2024–2026 work (skillfaber). A Zod schema validates the content module.
+2024–2026 work. Current role: **Architect II at PDI Technologies** (PDIQ is
+his current job's flagship work); **skillfaber** is his independent side
+venture. A Zod schema validates the content module.
 
 Featured credentials (both in `projects[]` and their `experience[]` entries):
 
-- **PDIQ (PDI Technologies)** — enterprise RAG assistant on AWS, co-authored
-  AWS ML Blog post ([link](https://aws.amazon.com/blogs/machine-learning/how-pdi-built-an-enterprise-grade-rag-system-for-ai-applications-with-aws/),
+- **PDIQ (PDI Technologies — current role, Architect II)** — enterprise RAG
+  assistant on AWS, co-authored AWS ML Blog post ([link](https://aws.amazon.com/blogs/machine-learning/how-pdi-built-an-enterprise-grade-rag-system-for-ai-applications-with-aws/),
   byline: Jhorlin De Armas, PDI Architect II). Serverless ingestion
   (EventBridge/Lambda/ECS crawlers for Confluence, SharePoint, Azure DevOps,
   web), Aurora PostgreSQL vectors, Bedrock (Nova + Titan Embeddings V2).
