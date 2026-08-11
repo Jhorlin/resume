@@ -37,7 +37,9 @@ Chat rides skillfaber's existing prod infra — no servers here.
 
 `src/content/resume.ts` exports typed data; everything renders from it:
 
-- `profile` — name, headline, location, links (GitHub, LinkedIn), contact
+- `profile` — name, headline, location (Lake Mary, FL), links
+  (GitHub, LinkedIn: https://www.linkedin.com/in/jhorlin/), contact;
+  education: University of Central Florida, 2002–2006
 - `highlights` — 3–4 skim bullets for the top of the page
 - `experience[]` — role, company, dates, achievement bullets
 - `projects[]` — name, description, outcomes, tech, links (skillfaber featured)
