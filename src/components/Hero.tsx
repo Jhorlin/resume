@@ -28,9 +28,11 @@ export function Hero() {
           </Button>
         ))}
       </div>
-      <p className="mt-4 text-sm text-muted-foreground">
-        Have questions? Ask my AI assistant — bottom-right corner.
-      </p>
+      {import.meta.env.VITE_SKILLFABER_WIDGET_TOKEN && (
+        <p className="mt-4 text-sm text-muted-foreground">
+          Have questions? Ask my AI assistant — bottom-right corner.
+        </p>
+      )}
     </header>
   );
 }
