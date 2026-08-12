@@ -9,6 +9,6 @@ export default defineConfig({
     url: "http://127.0.0.1:4173",
     timeout: 180_000,
     reuseExistingServer: !process.env.CI,
-    env: { VITE_SKILLFABER_WIDGET_TOKEN: "" },
+    env: { VITE_SKILLFABER_WIDGET_TOKEN: "", NO_HTTPS: "1" },
   },
 });

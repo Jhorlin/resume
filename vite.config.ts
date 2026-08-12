@@ -14,7 +14,7 @@ const certDir = path.resolve(import.meta.dirname, ".certs");
 const key = path.join(certDir, "localhost-key.pem");
 const cert = path.join(certDir, "localhost-cert.pem");
 const https =
-  fs.existsSync(key) && fs.existsSync(cert)
+  !process.env.NO_HTTPS && fs.existsSync(key) && fs.existsSync(cert)
     ? { key: fs.readFileSync(key), cert: fs.readFileSync(cert) }
     : undefined;
 
