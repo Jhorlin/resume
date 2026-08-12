@@ -11,7 +11,8 @@
     "build": "npm run build:pdf && tsc && vite build",
     "build:pdf": "tsx scripts/build-pdf.tsx",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
@@ -23,6 +24,7 @@
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "@react-pdf/renderer": "^4.6.0",
     "@tailwindcss/vite": "^4.1.0",
     "@types/node": "^20.11.0",
