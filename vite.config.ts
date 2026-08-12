@@ -21,5 +21,5 @@ const https =
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: { alias: { "@": path.resolve(import.meta.dirname, "src") } },
-  server: { port: 5174, strictPort: true, https },
+  server: { port: 8443, strictPort: true, https },
 });
