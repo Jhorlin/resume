@@ -1,7 +1,22 @@
+import { Hero } from "@/components/Hero";
+import { Highlights } from "@/components/Highlights";
+import { Experience } from "@/components/Experience";
+import { Projects } from "@/components/Projects";
+import { Skills } from "@/components/Skills";
+import { Footer } from "@/components/Footer";
+import { Separator } from "@/components/ui/separator";
+
 export default function App() {
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="text-4xl font-bold tracking-tight">Jhorlin De Armas</h1>
+    <main>
+      <Hero />
+      <Separator className="mx-auto max-w-3xl" />
+      <Highlights />
+      <Experience />
+      <Projects />
+      <Skills />
+      <Separator className="mx-auto max-w-3xl" />
+      <Footer />
     </main>
   );
 }
