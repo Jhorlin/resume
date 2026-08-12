@@ -637,10 +637,13 @@ const data: Resume = {
       start: "2024-03",
       end: null,
       achievements: [
-        "Architected PDIQ, PDI's enterprise RAG assistant consolidating knowledge from Confluence, SharePoint, Azure DevOps, and the web into one AI chat — co-authored the AWS Machine Learning Blog post on the system.",
-        "Designed the serverless ingestion pipeline — EventBridge scheduling, Lambda and ECS crawlers, SNS/SQS fan-out — feeding S3, DynamoDB, and Aurora PostgreSQL vector storage.",
-        "Raised answer approval from 60% to 79% by prepending document summaries to embedded chunks (Amazon Bedrock: Nova + Titan Text Embeddings V2).",
-        "Made visual content searchable by captioning images with Bedrock and inlining S3 references into the index.",
+        "Architected PDIQ, PDI's multi-tenant AI assistant platform on AWS (200k+ lines of TypeScript): composable assistants built from knowledge bases, models, guardrails, and agent tools, streaming chat via CloudFront and Lambda Function URLs — co-authored the AWS Machine Learning Blog post on its RAG architecture.",
+        "Designed the 'one pipeline, many crawlers' ingestion architecture: containerized crawlers (Confluence, SharePoint, Jira, ServiceNow, Azure DevOps, web, and more) write raw content to S3 while a single processing service owns chunking, summary-prepended embeddings (answer approval 60% → 79%), image captioning, and video indexing.",
+        "Built an AWS-native agent-tool framework contemporaneous with MCP's release: Lambda functions self-describe via JSON Schema and are discovered at runtime by resource tag — extended cross-account so customers can expose their own Lambdas as agent tools.",
+        "Embedded AI support agents into Salesforce Lightning (LWC + Screen Flows) backed by the PDIQ RAG, with a JWT identity bridge spanning Salesforce, Cvent, and Entra ID — agents automate case triage, comments, email, and knowledge retrieval.",
+        "Led the PDI-wide support rollout: trained a team of 8 new-graduate offshore engineers — fundamentals first, then AI-augmented development with Claude Code; the proof of concept became PDI's internal support harness.",
+        "Architected MyPDI, PDI's unified customer portal (~45 contributors): Single-SPA micro frontends composed via native ES import maps, runtime app registration with no shell redeploys, and the AI assistant integrated as 'chat as a service.'",
+        "Built an AI legal workbench over PDI's contract corpus: natural language compiled to search queries, parallel fan-out Q&A streaming across selected contracts, live prompt administration, and durable audit trails.",
       ],
     },
     {
@@ -740,6 +743,28 @@ const data: Resume = {
       ],
       tech: ["SST v3", "React 19", "Amazon Bedrock", "DynamoDB", "Lambda"],
       links: [{ label: "skillfaber.com", url: "https://skillfaber.com" }],
+    },
+    {
+      name: "MyPDI — unified portal",
+      description:
+        "PDI's unified customer experience: a micro frontend platform where remote apps, their routes, and navigation are registered at runtime from data — no shell redeploys — with the AI assistant available everywhere as 'chat as a service.'",
+      outcomes: [
+        "~45 contributors building against one shell with guaranteed runtime singletons via native ES import maps",
+        "Tenant admins add applications through a UI, not a deploy",
+      ],
+      tech: ["Single-SPA", "React", "import maps", "AppSync", "Cognito", "SST v3"],
+      links: [],
+    },
+    {
+      name: "AI legal workbench",
+      description:
+        "Search-and-interrogate workbench over PDI's contract corpus: natural language compiled into inspectable search queries, and fan-out Q&A that streams parallel answers across every selected contract.",
+      outcomes: [
+        "One question, N contracts, N streaming answers — replacing contract-by-contract review",
+        "Prompt-as-configuration: legal can tune AI behavior live, no deploys",
+      ],
+      tech: ["Amazon Bedrock", "OpenSearch", "AppSync", "Lambda response streaming", "React"],
+      links: [],
     },
     {
       name: "This site",
