@@ -30,15 +30,19 @@ Vite · React 19 · Tailwind v4 · shadcn/ui · @react-pdf/renderer · SST v3
 
 ## Domain flip (after the No-IP → Route 53 transfer completes)
 
-1. Confirm the transfer finished (No-IP ticket #1065257) and a Route 53
-   hosted zone for `jhorlin.com` exists in this AWS account.
-2. In `.env`, uncomment `RESUME_DOMAIN=jhorlin.com`.
-3. `npx sst deploy --stage production` — SST provisions the ACM cert (DNS
+1. Decide the DNS strategy FIRST: `home.jhorlin.com` / `print.jhorlin.com`
+   are dynamic-DNS hostnames on No-IP Plus Managed DNS. If DNS stays on
+   No-IP nameservers, do NOT proceed — the custom domain requires the Route
+   53 zone to be authoritative.
+2. Confirm the registrar transfer finished (No-IP ticket #1065257) and the
+   `jhorlin.com` hosted zone exists in the glk AWS account (690429826899).
+3. Move nameserver delegation to the Route 53 zone (recreate any needed
+   records there first, including replacements for the dynamic-DNS
+   hostnames). ACM certificate DNS validation will hang indefinitely if
+   delegation still points at No-IP.
+4. In `.env`, uncomment `RESUME_DOMAIN=jhorlin.com`.
+5. `npx sst deploy --stage production` — SST provisions the ACM cert (DNS
    validation) and alias records for `jhorlin.com` + `www` redirect.
-4. Keep the No-IP nameserver entries for `home.jhorlin.com` /
-   `print.jhorlin.com` in mind: if DNS stays on No-IP Plus Managed DNS,
-   do NOT switch the zone — only flip once DNS strategy is decided
-   (see spec: transfer keeps No-IP nameservers initially).
 
 ## Content updates
 
