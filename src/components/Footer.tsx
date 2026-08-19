@@ -15,7 +15,7 @@ export function Footer() {
         {profile.location}
       </p>
       <p className="mt-4">
-        © {new Date().getFullYear()} {profile.name}. Built with React 19, Tailwind v4, and SST — chat powered by skillfaber.
+        © {new Date().getFullYear()} {profile.name}. Built with React 19, Tailwind v4, and SST. Chat powered by skillfaber.
       </p>
     </footer>
   );

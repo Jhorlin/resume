@@ -38,7 +38,7 @@ export function Hero() {
 
       {import.meta.env.VITE_SKILLFABER_WIDGET_TOKEN && (
         <p className="mt-4 text-sm text-muted-foreground">
-          Have questions? Ask my AI assistant — bottom-right corner.
+          Have questions? Ask my AI assistant in the bottom-right corner.
         </p>
       )}
     </header>

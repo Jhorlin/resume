@@ -123,7 +123,7 @@ const ECO_NODES: Node[] = [
   box("channels", 0, 150, "Channels", "web · widget · Slack · email · Salesforce"),
   box("skillfaber", 300, 150, "Skillfaber", "role-based agent platform", "accent"),
   box("bedrock", 620, 150, "Bedrock + AgentCore", "models · 128 MCP tool integrations"),
-  box("notitia", 300, 10, "Notitia", "serverless RAG (Go) — knowledge"),
+  box("notitia", 300, 10, "Notitia", "serverless RAG (Go), knowledge"),
   box("sessio", 300, 300, "Sessio", "meetings + transcripts (MCP)"),
   box("issue", 620, 300, "Issue-agent (CI)", "codes issues → opens PRs"),
 ];
