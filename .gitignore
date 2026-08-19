@@ -5,7 +5,9 @@ sst-env.d.ts
 .env*
 !.env.example
 content-sources/
-public/JhorlinDeArmas-Resume.pdf
+# generated resume artifacts (built by `npm run build:pdf`)
+public/JhorlinDeArmas-Resume*.pdf
+public/JhorlinDeArmas-Resume*.docx
 playwright-report/
 test-results/
 coverage/

@@ -1,8 +1,9 @@
 import { Badge } from "@/components/ui/badge";
 import { Section } from "@/components/Section";
-import { resume } from "@/content/resume";
+import { useResume } from "@/content/context";
 
 export function Skills() {
+  const resume = useResume();
   return (
     <Section id="skills" title="Skills">
       <div className="space-y-4">

@@ -1,9 +1,10 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Section } from "@/components/Section";
-import { resume } from "@/content/resume";
+import { useResume } from "@/content/context";
 
 export function Projects() {
+  const resume = useResume();
   return (
     <Section id="projects" title="Projects">
       <div className="space-y-6">

@@ -1,8 +1,9 @@
 import { Section } from "@/components/Section";
-import { resume } from "@/content/resume";
+import { useResume } from "@/content/context";
 import { formatRange } from "@/lib/dates";
 
 export function Experience() {
+  const resume = useResume();
   return (
     <Section id="experience" title="Experience">
       <ol className="space-y-8">

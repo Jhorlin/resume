@@ -1,9 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { Downloads } from "@/components/Downloads";
+import { ViewSwitcher } from "@/components/ViewSwitcher";
 import { resume } from "@/content/resume";
+import { useHashView } from "@/lib/useHashView";
 
 export function Hero() {
   const { profile } = resume;
+  const view = useHashView();
   return (
     <header className="mx-auto w-full max-w-3xl px-6 pt-16 pb-6">
       <div className="flex items-start justify-between gap-4">
@@ -14,20 +18,24 @@ export function Hero() {
         </div>
         <ThemeToggle />
       </div>
-      <div className="mt-6 flex flex-wrap gap-3">
-        <Button asChild>
-          <a href="/JhorlinDeArmas-Resume.pdf" download>
-            Download resume (PDF)
-          </a>
-        </Button>
-        {profile.links.map((link) => (
-          <Button key={link.url} variant="outline" asChild>
-            <a href={link.url} target="_blank" rel="noreferrer">
-              {link.label}
-            </a>
-          </Button>
-        ))}
+
+      <div className="mt-6">
+        <ViewSwitcher active={view} />
       </div>
+
+      <div className="mt-4 flex flex-col gap-3">
+        <Downloads />
+        <div className="flex flex-wrap gap-2">
+          {profile.links.map((link) => (
+            <Button key={link.url} variant="ghost" size="sm" asChild>
+              <a href={link.url} target="_blank" rel="noreferrer">
+                {link.label}
+              </a>
+            </Button>
+          ))}
+        </div>
+      </div>
+
       {import.meta.env.VITE_SKILLFABER_WIDGET_TOKEN && (
         <p className="mt-4 text-sm text-muted-foreground">
           Have questions? Ask my AI assistant — bottom-right corner.

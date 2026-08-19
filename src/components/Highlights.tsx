@@ -1,7 +1,8 @@
 import { Section } from "@/components/Section";
-import { resume } from "@/content/resume";
+import { useResume } from "@/content/context";
 
 export function Highlights() {
+  const resume = useResume();
   return (
     <Section id="highlights" title="Highlights">
       <ul className="list-disc space-y-2 pl-5 leading-relaxed">

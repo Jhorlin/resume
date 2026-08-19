@@ -1,5 +1,6 @@
 import { Document, Link, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
 import { resume } from "../src/content/resume";
+import type { Resume } from "../src/content/schema";
 import { formatRange } from "../src/lib/dates";
 
 const styles = StyleSheet.create({
@@ -41,8 +42,8 @@ function Bullets({ items }: { items: string[] }) {
   );
 }
 
-export function ResumePdf() {
-  const { profile } = resume;
+export function ResumePdf({ data = resume }: { data?: Resume }) {
+  const { profile } = data;
   return (
     <Document title={`${profile.name} — Resume`} author={profile.name}>
       <Page size="LETTER" style={styles.page}>
@@ -55,12 +56,12 @@ export function ResumePdf() {
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Highlights</Text>
-          <Bullets items={resume.highlights} />
+          <Bullets items={data.highlights} />
         </View>
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Experience</Text>
-          {resume.experience.map((job) => (
+          {data.experience.map((job) => (
             <View key={`${job.company}-${job.start}`} wrap={false}>
               <View style={styles.jobHeader}>
                 <Text style={styles.jobTitle}>
@@ -75,7 +76,7 @@ export function ResumePdf() {
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Projects</Text>
-          {resume.projects.map((project) => (
+          {data.projects.map((project) => (
             <View key={project.name} style={{ marginTop: 4 }} wrap={false}>
               <Text>
                 <Text style={styles.bold}>{project.name}</Text> — {project.description}
@@ -91,7 +92,7 @@ export function ResumePdf() {
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Skills</Text>
-          {resume.skills.map((group) => (
+          {data.skills.map((group) => (
             <Text key={group.category} style={styles.skillLine}>
               <Text style={styles.bold}>{group.category}: </Text>
               {group.items.join(", ")}
