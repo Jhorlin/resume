@@ -246,15 +246,15 @@ const data: Resume = {
   skills: [
     {
       category: "Agent Infrastructure",
-      items: ["Agent runtimes / tool-use loops", "Multi-agent orchestration & sub-agents", "MCP", "Bedrock AgentCore Gateway", "Model capability detection & polyfill", "Guardrails & policy control", "Context engineering", "Evals & benchmarking", "Long-running / checkpointed agents", "Streaming (SSE / MQTT)", "Usage metering & token-cost optimization", "Sandboxed code-mode tools"],
+      items: ["Agent runtimes / tool-use loops", "Multi-agent orchestration & sub-agents", "MCP / tool calling", "Bedrock AgentCore Gateway", "Prompt & context engineering", "Model capability detection & polyfill", "Guardrails & responsible AI", "Evals & benchmarking (LLM-as-judge)", "Long-running / checkpointed agents", "Streaming (SSE / MQTT)", "Inference cost & latency optimization", "Sandboxed code-mode tools"],
     },
     {
       category: "Models & Providers",
-      items: ["Amazon Bedrock", "OpenRouter", "Anthropic Claude", "Amazon Nova", "Meta Llama", "Cohere (embed + rerank)", "Multi-provider LLM orchestration", "Prompt caching"],
+      items: ["Amazon Bedrock", "OpenRouter", "Anthropic Claude", "Amazon Nova", "Meta Llama", "Cohere (embed + rerank)", "Multi-model routing & failover", "Prompt caching"],
     },
     {
       category: "Data & Retrieval",
-      items: ["RAG & hybrid retrieval", "Embeddings", "pgvector", "Aurora PostgreSQL", "DynamoDB", "OpenSearch", "Athena", "Redshift", "Amazon QLDB", "Redis"],
+      items: ["Retrieval-Augmented Generation (RAG)", "Hybrid retrieval & reranking", "Chunking & semantic search", "Embeddings", "Knowledge bases", "pgvector", "OpenSearch", "Aurora PostgreSQL", "DynamoDB", "Athena / Redshift", "Data pipelines & governance"],
     },
     {
       category: "Salesforce Platform",
@@ -262,11 +262,11 @@ const data: Resume = {
     },
     {
       category: "Identity & Security",
-      items: ["Okta OIDC", "Cognito custom auth", "RFC 8693 token exchange / OBO", "SAML / JWT (RS256)", "Multi-tenant RBAC", "KMS", "JIT provisioning"],
+      items: ["Enterprise SSO (Okta OIDC, SAML, OAuth 2.0)", "Cognito custom auth", "RFC 8693 token exchange / OBO", "JWT (RS256) / JWT-bearer", "Multi-tenant isolation & RBAC", "Least-privilege IAM", "KMS encryption & audit logging", "JIT provisioning"],
     },
     {
       category: "Cloud, Infra & Delivery",
-      items: ["AWS Lambda", "AppSync", "EventBridge (+ Pipes)", "SQS / SNS / Kafka", "IoT Core (MQTT)", "CloudFront", "Fargate / ECS", "Chime SDK", "SST / Pulumi", "CDK / CloudFormation", "Docker / Kubernetes", "CI/CD (CodePipeline, GitHub Actions)", "Observability (X-Ray, CloudWatch, RUM)"],
+      items: ["AWS Well-Architected Framework", "Infrastructure as Code (SST/Pulumi, CDK, CloudFormation)", "Serverless (Lambda, Step Functions)", "Event-driven (EventBridge + Pipes, SQS/SNS, Kafka)", "Microservices & APIs (AppSync, gRPC, REST)", "IoT Core (MQTT)", "Containers (Docker, Kubernetes, Fargate/ECS)", "CI/CD (CodePipeline, GitHub Actions)", "Observability (X-Ray, CloudWatch, RUM, Datadog)", "Cost optimization / FinOps", "High availability & multi-region", "Chime SDK", "CloudFront"],
     },
     {
       category: "Frontend",
@@ -274,7 +274,7 @@ const data: Resume = {
     },
     {
       category: "Leadership & Delivery",
-      items: ["Technical leadership", "Team building & hiring", "Mentoring & training", "Founder / zero-to-one", "Cost & budget ownership", "Cross-team dependency mapping"],
+      items: ["Technical leadership", "Team building, hiring & mentoring", "Founder / zero-to-one", "Executive & stakeholder communication", "Technology roadmap & build-vs-buy", "Cost & budget ownership", "Published (AWS ML Blog co-author)", "AI-assisted development (Claude Code)"],
     },
     {
       category: "Languages",
