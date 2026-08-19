@@ -1,10 +1,11 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { Section } from "@/components/Section";
-import { useIsNew, useResume } from "@/content/context";
+import { useResume } from "@/content/context";
 import { formatRange } from "@/lib/dates";
+import { listItem } from "@/lib/anim";
 
 export function Experience() {
   const resume = useResume();
-  const isNew = useIsNew();
   return (
     <Section id="experience" title="Experience">
       <ol className="space-y-8">
@@ -18,9 +19,13 @@ export function Experience() {
             </div>
             <p className="text-sm text-muted-foreground">{job.location}</p>
             <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-relaxed">
-              {job.achievements.map((achievement) => (
-                <li key={achievement} className={isNew(achievement) ? "tier-in" : undefined}>{achievement}</li>
-              ))}
+              <AnimatePresence initial={false}>
+                {job.achievements.map((achievement) => (
+                  <motion.li key={achievement} {...listItem}>
+                    {achievement}
+                  </motion.li>
+                ))}
+              </AnimatePresence>
             </ul>
           </li>
         ))}

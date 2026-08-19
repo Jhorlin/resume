@@ -1,16 +1,19 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Section } from "@/components/Section";
-import { useIsNew, useResume } from "@/content/context";
+import { useResume } from "@/content/context";
+import { listItem } from "@/lib/anim";
 
 export function Projects() {
   const resume = useResume();
-  const isNew = useIsNew();
   return (
     <Section id="projects" title="Projects">
       <div className="space-y-6">
-        {resume.projects.map((project) => (
-          <Card key={project.name} className={isNew(project.name) ? "tier-in" : undefined}>
+        <AnimatePresence initial={false}>
+          {resume.projects.map((project) => (
+            <motion.div key={project.name} {...listItem}>
+          <Card>
             <CardHeader>
               <CardTitle>{project.name}</CardTitle>
               <CardDescription>{project.description}</CardDescription>
@@ -43,7 +46,9 @@ export function Projects() {
               ))}
             </CardContent>
           </Card>
-        ))}
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </Section>
   );

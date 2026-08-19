@@ -61,13 +61,26 @@ test("bragging view renders React Flow diagrams", async ({ page }) => {
   expect(errors).toEqual([]);
 });
 
-test("tier transition animates only newly added text", async ({ page }) => {
+test("tier transitions add and remove content without errors", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("console", (msg) => {
+    if (msg.type() === "error") errors.push(msg.text());
+  });
+  const channels = page.getByText(/Abstracted delivery into a channels layer/);
+  const brag = page.getByText(/Built the whole suite solo in 19 months/);
+
   await page.goto("/#/lite");
-  await expect(page.locator(".tier-in")).toHaveCount(0);
-  await page.getByRole("link", { name: "Full" }).click();
-  await expect(page.locator(".tier-in").first()).toBeVisible();
-  await expect(page.getByText(/Abstracted delivery into a channels layer/)).toHaveClass(/tier-in/);
-  await expect(page.getByText(/Founded Skillfaber on the thesis/)).not.toHaveClass(/tier-in/);
-  await page.getByRole("link", { name: "Bragging" }).click();
-  await expect(page.getByText(/Built the whole suite solo in 19 months/)).toHaveClass(/tier-in/);
+  await expect(channels).toHaveCount(0); // trimmed in Lite
+
+  await page.getByRole("link", { name: "Full", exact: true }).click();
+  await expect(channels).toBeVisible(); // added stepping up to Full
+
+  await page.getByRole("link", { name: "Bragging", exact: true }).click();
+  await expect(brag).toBeVisible(); // brag-only highlight
+
+  await page.getByRole("link", { name: "Lite", exact: true }).click();
+  await expect(brag).toHaveCount(0); // removed stepping back down
+  await expect(channels).toHaveCount(0);
+
+  expect(errors).toEqual([]);
 });
