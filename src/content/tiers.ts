@@ -38,8 +38,20 @@ export const liteResume: Resume = {
   ).filter(Boolean),
 };
 
-export type Tier = "lite" | "full";
+/**
+ * The "bragging" cut is the full resume with the extended highlights reel
+ * swapped in (metrics and third-party validation). Same bullets and roles as
+ * Full; only the opening highlights differ.
+ */
+export const bragResume: Resume = {
+  ...resume,
+  highlights: resume.bragHighlights ?? resume.highlights,
+};
+
+export type Tier = "lite" | "full" | "brag";
 
 export function resumeForTier(tier: Tier): Resume {
-  return tier === "lite" ? liteResume : resume;
+  if (tier === "lite") return liteResume;
+  if (tier === "brag") return bragResume;
+  return resume;
 }

@@ -4,7 +4,7 @@ const data: Resume = {
   profile: {
     name: "Jhorlin De Armas",
     headline: "AI Agent Infrastructure & Platform Engineer",
-    location: "Lake Mary, FL · Remote",
+    location: "Orlando, FL · Remote",
     email: "jhorlin@gmail.com",
     links: [
       { label: "LinkedIn", url: "https://www.linkedin.com/in/jhorlin/" },
@@ -25,6 +25,17 @@ const data: Resume = {
     "Co-author of the AWS Machine Learning Blog post on PDIQ, PDI's enterprise RAG system, where answer approval measured 60% → 79%.",
     "Eval-driven: benchmarked a hybrid retriever at 86% qrels-hit@k on SciFact with regression floors in CI; every claim here is measured, not asserted.",
     "20 years shipping software; the last decade architecting AI and serverless systems on AWS, and mentoring teams to build with AI-native tooling.",
+  ],
+  bragHighlights: [
+    "I build agent harnesses: the runtime around the model (tool-use loops, streaming, capability detection, metering, and evals), on AWS in TypeScript and Go.",
+    "Founder of Skillfaber, a production role-based AI agent platform on Amazon Bedrock, built solo: ~270 Lambdas, 128 MCP tool integrations, and a checkpoint-and-continue runtime for unbounded agent turns. The assistant on this page runs on it.",
+    "Built the whole suite solo in 19 months: the agent platform, plus Sessio (a meeting platform whose transcripts feed agents) and Notitia (a serverless RAG service in Go).",
+    "Co-author of the AWS Machine Learning Blog post on PDIQ, PDI's enterprise RAG system, where answer approval measured 60% → 79%.",
+    "Impact in numbers: cut a PDI support team's resolution time from four days to one, and a payroll customer's agent run from 25 million tokens and 45 minutes to about 100k tokens and two minutes.",
+    "Eval-driven: benchmarked a hybrid retriever at 86% qrels-hit@k on SciFact with regression floors in CI; every claim here is measured, not asserted.",
+    "Independently converged on the tool-calling pattern MCP would standardize, shipping it within days of MCP's announcement, and applied browser-era feature-detection-and-polyfill to LLM capabilities, a pattern I first shipped in 2010.",
+    "Validated by others: Waypoints, a training platform I architected, was sold to General Dynamics; PDIQ was published by AWS; Skillfaber runs in production for real users.",
+    "20 years across the stack, from real-time C++ and CDN internals to micro-frontends and agent runtimes, hiring and leading teams throughout.",
   ],
   experience: [
     {
@@ -235,23 +246,39 @@ const data: Resume = {
   skills: [
     {
       category: "Agent Infrastructure",
-      items: ["Agent runtimes / tool-use loops", "MCP", "Multi-model orchestration", "Model capability detection", "Evals & benchmarking", "RAG & hybrid retrieval", "Streaming (SSE / MQTT)", "Context engineering", "Usage metering", "Sandboxed agent execution"],
+      items: ["Agent runtimes / tool-use loops", "Multi-agent orchestration & sub-agents", "MCP", "Bedrock AgentCore Gateway", "Model capability detection & polyfill", "Guardrails & policy control", "Context engineering", "Evals & benchmarking", "Long-running / checkpointed agents", "Streaming (SSE / MQTT)", "Usage metering & token-cost optimization", "Sandboxed code-mode tools"],
     },
     {
-      category: "AI & Data",
-      items: ["Amazon Bedrock", "AgentCore", "Cohere / Titan embeddings", "pgvector", "Aurora PostgreSQL", "DynamoDB", "Athena", "Redshift", "QLDB", "Redis"],
+      category: "Models & Providers",
+      items: ["Amazon Bedrock", "OpenRouter", "Anthropic Claude", "Amazon Nova", "Meta Llama", "Cohere (embed + rerank)", "Multi-provider LLM orchestration", "Prompt caching"],
     },
     {
-      category: "Identity & Enterprise Integration",
-      items: ["Okta OIDC", "Cognito custom auth", "RFC 8693 token exchange / OBO", "SAML / JWT (RS256)", "Multi-tenant RBAC", "Salesforce (LWC, Apex, embedded AI)", "JIT provisioning"],
+      category: "Data & Retrieval",
+      items: ["RAG & hybrid retrieval", "Embeddings", "pgvector", "Aurora PostgreSQL", "DynamoDB", "OpenSearch", "Athena", "Redshift", "Amazon QLDB", "Redis"],
     },
     {
-      category: "Cloud & Infra",
-      items: ["AWS Lambda", "AppSync", "SQS / SNS", "EventBridge", "IoT Core", "CloudFront", "Cognito", "Fargate / ECS", "SST / Pulumi", "CDK", "CloudFormation", "Docker", "Kubernetes"],
+      category: "Salesforce Platform",
+      items: ["Apex", "Lightning Web Components", "Aura", "Platform Events", "Metadata API", "SOQL", "Screen Flows", "JWT-bearer SSO", "Embedded AI"],
+    },
+    {
+      category: "Identity & Security",
+      items: ["Okta OIDC", "Cognito custom auth", "RFC 8693 token exchange / OBO", "SAML / JWT (RS256)", "Multi-tenant RBAC", "KMS", "JIT provisioning"],
+    },
+    {
+      category: "Cloud, Infra & Delivery",
+      items: ["AWS Lambda", "AppSync", "EventBridge (+ Pipes)", "SQS / SNS / Kafka", "IoT Core (MQTT)", "CloudFront", "Fargate / ECS", "Chime SDK", "SST / Pulumi", "CDK / CloudFormation", "Docker / Kubernetes", "CI/CD (CodePipeline, GitHub Actions)", "Observability (X-Ray, CloudWatch, RUM)"],
+    },
+    {
+      category: "Frontend",
+      items: ["React", "Micro-frontends (Single-SPA + import maps)", "RxJS", "Angular", "MUI", "Tailwind", "Vite"],
+    },
+    {
+      category: "Leadership & Delivery",
+      items: ["Technical leadership", "Team building & hiring", "Mentoring & training", "Founder / zero-to-one", "Cost & budget ownership", "Cross-team dependency mapping"],
     },
     {
       category: "Languages",
-      items: ["TypeScript", "Go", "JavaScript / Node.js", "React", "C#", "C/C++", "Java", "SQL", "Salesforce Apex"],
+      items: ["TypeScript", "Go", "JavaScript / Node.js", "C#", "C / C++", "Java", "SQL", "Apex"],
     },
   ],
 };

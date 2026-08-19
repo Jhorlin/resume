@@ -17,7 +17,9 @@ const Architecture = lazy(() =>
 
 export default function App() {
   const view = useHashView();
-  const data = resumeForTier(view === "lite" ? "lite" : "full");
+  const data = resumeForTier(
+    view === "lite" ? "lite" : view === "extended" ? "brag" : "full"
+  );
 
   return (
     <ResumeProvider data={data}>

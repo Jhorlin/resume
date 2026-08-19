@@ -38,6 +38,8 @@ export const resumeSchema = z.object({
     }),
   }),
   highlights: z.array(z.string().min(1)).min(3).max(5),
+  // Extended highlights reel, shown only on the "Bragging" view.
+  bragHighlights: z.array(z.string().min(1)).min(3).max(12).optional(),
   experience: z.array(experienceSchema).min(1),
   projects: z.array(projectSchema).min(1),
   skills: z.array(
