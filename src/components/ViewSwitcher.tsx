@@ -2,9 +2,9 @@ import { VIEW_TO_HASH, type View } from "@/lib/useHashView";
 import { cn } from "@/lib/utils";
 
 const TABS: { view: View; label: string }[] = [
-  { view: "full", label: "Full" },
   { view: "lite", label: "Lite" },
-  { view: "extended", label: "Architecture" },
+  { view: "full", label: "Full" },
+  { view: "extended", label: "Bragging" },
 ];
 
 export function ViewSwitcher({ active }: { active: View }) {

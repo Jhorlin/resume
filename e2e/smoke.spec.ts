@@ -36,20 +36,25 @@ test("serves the Word download", async ({ page }) => {
   expect((await response.body()).subarray(0, 2).toString()).toBe("PK");
 });
 
-test("lite view trims older roles", async ({ page }) => {
+test("lite view keeps every role but trims bullets", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByText("Highwinds Software")).toBeVisible();
+  // A Full-only Skillfaber bullet is present on the full view...
+  await expect(page.getByText(/Abstracted delivery into a channels layer/)).toBeVisible();
   await page.goto("/#/lite");
   await expect(page.getByRole("heading", { level: 1, name: "Jhorlin De Armas" })).toBeVisible();
-  await expect(page.getByText("Highwinds Software")).toHaveCount(0);
+  // ...the 20-year range is kept (oldest role still shows)...
+  await expect(page.getByText("Highwinds Software")).toBeVisible();
+  // ...but the trimmed bullet is gone.
+  await expect(page.getByText(/Abstracted delivery into a channels layer/)).toHaveCount(0);
 });
 
-test("architecture view renders React Flow diagrams", async ({ page }) => {
+test("bragging view renders React Flow diagrams", async ({ page }) => {
   const errors: string[] = [];
   page.on("console", (msg) => {
     if (msg.type() === "error") errors.push(msg.text());
   });
-  await page.goto("/#/architecture");
+  await page.goto("/#/brag");
+  await expect(page.getByText("Now you're just bragging.")).toBeVisible();
   await expect(page.getByRole("heading", { name: "Architecture", exact: true })).toBeVisible();
   await expect(page.getByText("Skillfaber agent runtime")).toBeVisible();
   await expect(page.getByText("ChatAsync Lambda")).toBeVisible();

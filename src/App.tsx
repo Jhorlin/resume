@@ -23,6 +23,19 @@ export default function App() {
     <ResumeProvider data={data}>
       <main>
         <Hero />
+        {view === "extended" && (
+          <div className="mx-auto max-w-3xl px-6">
+            <div className="rounded-lg border border-primary/40 bg-primary/5 px-5 py-4">
+              <p className="text-sm font-semibold tracking-tight">
+                Now you're just bragging.
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                The extended cut — every bullet, plus live, interactive diagrams of the
+                systems behind the work. You asked for it.
+              </p>
+            </div>
+          </div>
+        )}
         <Separator className="mx-auto max-w-3xl" />
         <Highlights />
         <Experience />

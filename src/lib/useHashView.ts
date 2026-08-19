@@ -7,6 +7,7 @@ const HASH_TO_VIEW: Record<string, View> = {
   "#": "full",
   "#/": "full",
   "#/lite": "lite",
+  "#/brag": "extended",
   "#/architecture": "extended",
   "#/extended": "extended",
 };
@@ -14,7 +15,7 @@ const HASH_TO_VIEW: Record<string, View> = {
 export const VIEW_TO_HASH: Record<View, string> = {
   full: "#/",
   lite: "#/lite",
-  extended: "#/architecture",
+  extended: "#/brag",
 };
 
 function currentView(): View {
