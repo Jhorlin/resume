@@ -1,15 +1,16 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Section } from "@/components/Section";
-import { useResume } from "@/content/context";
+import { useIsNew, useResume } from "@/content/context";
 
 export function Projects() {
   const resume = useResume();
+  const isNew = useIsNew();
   return (
     <Section id="projects" title="Projects">
       <div className="space-y-6">
         {resume.projects.map((project) => (
-          <Card key={project.name}>
+          <Card key={project.name} className={isNew(project.name) ? "tier-in" : undefined}>
             <CardHeader>
               <CardTitle>{project.name}</CardTitle>
               <CardDescription>{project.description}</CardDescription>

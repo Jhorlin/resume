@@ -60,3 +60,14 @@ test("bragging view renders React Flow diagrams", async ({ page }) => {
   await expect(page.getByText("ChatAsync Lambda")).toBeVisible();
   expect(errors).toEqual([]);
 });
+
+test("tier transition animates only newly added text", async ({ page }) => {
+  await page.goto("/#/lite");
+  await expect(page.locator(".tier-in")).toHaveCount(0);
+  await page.getByRole("link", { name: "Full" }).click();
+  await expect(page.locator(".tier-in").first()).toBeVisible();
+  await expect(page.getByText(/Abstracted delivery into a channels layer/)).toHaveClass(/tier-in/);
+  await expect(page.getByText(/Founded Skillfaber on the thesis/)).not.toHaveClass(/tier-in/);
+  await page.getByRole("link", { name: "Bragging" }).click();
+  await expect(page.getByText(/Built the whole suite solo in 19 months/)).toHaveClass(/tier-in/);
+});

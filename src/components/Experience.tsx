@@ -1,9 +1,10 @@
 import { Section } from "@/components/Section";
-import { useResume } from "@/content/context";
+import { useIsNew, useResume } from "@/content/context";
 import { formatRange } from "@/lib/dates";
 
 export function Experience() {
   const resume = useResume();
+  const isNew = useIsNew();
   return (
     <Section id="experience" title="Experience">
       <ol className="space-y-8">
@@ -18,7 +19,7 @@ export function Experience() {
             <p className="text-sm text-muted-foreground">{job.location}</p>
             <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-relaxed">
               {job.achievements.map((achievement) => (
-                <li key={achievement}>{achievement}</li>
+                <li key={achievement} className={isNew(achievement) ? "tier-in" : undefined}>{achievement}</li>
               ))}
             </ul>
           </li>
