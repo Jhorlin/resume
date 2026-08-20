@@ -19,7 +19,7 @@ const Architecture = lazy(() =>
 export default function App() {
   const view = useHashView();
   const data = resumeForTier(
-    view === "lite" ? "lite" : view === "extended" ? "brag" : "full"
+    view === "lite" ? "lite" : view === "extended" ? "extended" : "full"
   );
 
   return (
@@ -32,11 +32,11 @@ export default function App() {
             <div className="mx-auto max-w-2xl px-8 sm:px-12">
               <div className="rounded-lg border border-primary/40 bg-primary/5 px-5 py-4">
                 <p className="text-sm font-semibold tracking-tight">
-                  Now you're just bragging.
+                  The extended cut.
                 </p>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  The extended cut — every bullet, plus live, interactive diagrams of the
-                  systems behind the work. You asked for it.
+                  Every bullet, plus live, interactive diagrams of the systems behind
+                  the work.
                 </p>
               </div>
             </div>

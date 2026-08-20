@@ -9,7 +9,7 @@ import type { Tier } from "@/content/tiers";
 export function Hero() {
   const { profile } = resume;
   const view = useHashView();
-  const tier: Tier = view === "lite" ? "lite" : view === "extended" ? "brag" : "full";
+  const tier: Tier = view === "lite" ? "lite" : view === "extended" ? "extended" : "full";
   return (
     <header className="mx-auto w-full max-w-2xl px-8 pt-16 pb-6 sm:px-12">
       <div className="flex items-start justify-between gap-4">

@@ -26,7 +26,7 @@ const data: Resume = {
     "Eval-driven: benchmarked a hybrid retriever at 86% qrels-hit@k on SciFact with regression floors in CI; every claim here is measured, not asserted.",
     "20 years shipping software; the last decade architecting AI and serverless systems on AWS, and mentoring teams to build with AI-native tooling.",
   ],
-  bragHighlights: [
+  extendedHighlights: [
     "I build agent harnesses: the runtime around the model (tool-use loops, streaming, capability detection, metering, and evals), on AWS in TypeScript and Go.",
     "Founder of Skillfaber, a production role-based AI agent platform on Amazon Bedrock, built solo: ~270 Lambdas, 128 MCP tool integrations, and a checkpoint-and-continue runtime for unbounded agent turns. The assistant on this page runs on it.",
     "Built the whole suite solo in 19 months: the agent platform, plus Sessio (a meeting platform whose transcripts feed agents) and Notitia (a serverless RAG service in Go).",

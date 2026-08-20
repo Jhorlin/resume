@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 const TABS: { view: View; label: string }[] = [
   { view: "lite", label: "Lite" },
   { view: "full", label: "Full" },
-  { view: "extended", label: "Bragging" },
+  { view: "extended", label: "Extended" },
 ];
 
 export function ViewSwitcher({ active }: { active: View }) {

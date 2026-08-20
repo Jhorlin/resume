@@ -6,7 +6,7 @@ import type { Tier } from "@/content/tiers";
 const ALL: { tier: Tier; label: string; blurb: string }[] = [
   { tier: "lite", label: "Lite", blurb: "one-page-feel skim" },
   { tier: "full", label: "Full", blurb: "every role and project" },
-  { tier: "brag", label: "Extended", blurb: "full plus the highlights reel" },
+  { tier: "extended", label: "Extended", blurb: "full plus the highlights reel" },
 ];
 
 /** Downloads follow the tier on screen; every version stays one click away. */

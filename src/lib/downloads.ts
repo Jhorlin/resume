@@ -8,7 +8,7 @@ import type { Tier } from "@/content/tiers";
 const TIER_LABEL: Record<Tier, string> = {
   lite: "Lite",
   full: "Full",
-  brag: "Extended",
+  extended: "Extended",
 };
 
 export function fileForTier(tier: Tier, ext: "pdf" | "docx"): string {

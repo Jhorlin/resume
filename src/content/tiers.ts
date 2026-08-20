@@ -50,19 +50,19 @@ export const liteResume: Resume = {
 };
 
 /**
- * The "bragging" cut is the full resume with the extended highlights reel
+ * The Extended cut is the full resume with the extended highlights reel
  * swapped in (metrics and third-party validation). Same bullets and roles as
  * Full; only the opening highlights differ.
  */
-export const bragResume: Resume = {
+export const extendedResume: Resume = {
   ...resume,
-  highlights: resume.bragHighlights ?? resume.highlights,
+  highlights: resume.extendedHighlights ?? resume.highlights,
 };
 
-export type Tier = "lite" | "full" | "brag";
+export type Tier = "lite" | "full" | "extended";
 
 export function resumeForTier(tier: Tier): Resume {
   if (tier === "lite") return liteResume;
-  if (tier === "brag") return bragResume;
+  if (tier === "extended") return extendedResume;
   return resume;
 }

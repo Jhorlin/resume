@@ -48,13 +48,13 @@ test("lite view keeps every role but trims bullets", async ({ page }) => {
   await expect(page.getByText(/Abstracted delivery into a channels layer/)).toHaveCount(0);
 });
 
-test("bragging view renders React Flow diagrams", async ({ page }) => {
+test("extended view renders React Flow diagrams", async ({ page }) => {
   const errors: string[] = [];
   page.on("console", (msg) => {
     if (msg.type() === "error") errors.push(msg.text());
   });
-  await page.goto("/#/brag");
-  await expect(page.getByText("Now you're just bragging.")).toBeVisible();
+  await page.goto("/#/extended");
+  await expect(page.getByText("The extended cut.")).toBeVisible();
   await expect(page.getByRole("heading", { name: "Architecture", exact: true })).toBeVisible();
   await expect(page.getByText("Skillfaber agent runtime")).toBeVisible();
   await expect(page.getByText("ChatAsync Lambda")).toBeVisible();
@@ -67,7 +67,7 @@ test("tier transitions add and remove content without errors", async ({ page }) 
     if (msg.type() === "error") errors.push(msg.text());
   });
   const channels = page.getByText(/Abstracted delivery into a channels layer/);
-  const brag = page.getByText(/Built the whole suite solo in 19 months/);
+  const extended = page.getByText(/Built the whole suite solo in 19 months/);
 
   await page.goto("/#/lite");
   await expect(channels).toHaveCount(0); // trimmed in Lite
@@ -75,11 +75,11 @@ test("tier transitions add and remove content without errors", async ({ page }) 
   await page.getByRole("link", { name: "Full", exact: true }).click();
   await expect(channels).toBeVisible(); // added stepping up to Full
 
-  await page.getByRole("link", { name: "Bragging", exact: true }).click();
-  await expect(brag).toBeVisible(); // brag-only highlight
+  await page.getByRole("link", { name: "Extended", exact: true }).click();
+  await expect(extended).toBeVisible(); // extended-only highlight
 
   await page.getByRole("link", { name: "Lite", exact: true }).click();
-  await expect(brag).toHaveCount(0); // removed stepping back down
+  await expect(extended).toHaveCount(0); // removed stepping back down
   await expect(channels).toHaveCount(0);
 
   expect(errors).toEqual([]);
@@ -91,7 +91,7 @@ test("downloads follow the selected tier, and all versions are reachable", async
   await expect(pdf()).toHaveAttribute("href", "/JhorlinDeArmas-Resume-Lite.pdf");
   await page.getByRole("link", { name: "Full", exact: true }).click();
   await expect(pdf()).toHaveAttribute("href", "/JhorlinDeArmas-Resume-Full.pdf");
-  await page.getByRole("link", { name: "Bragging", exact: true }).click();
+  await page.getByRole("link", { name: "Extended", exact: true }).click();
   await expect(pdf()).toHaveAttribute("href", "/JhorlinDeArmas-Resume-Extended.pdf");
 
   // every variant is available from the disclosure
