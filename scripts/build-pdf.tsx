@@ -2,17 +2,23 @@ import { mkdirSync } from "node:fs";
 import { renderToFile } from "@react-pdf/renderer";
 import { ResumePdf } from "./resume-pdf";
 import { writeResumeDocx } from "./resume-docx";
-import { resume } from "../src/content/resume";
-import { liteResume } from "../src/content/tiers";
+import { resumeForTier, type Tier } from "../src/content/tiers";
+import { fileForTier } from "../src/lib/downloads";
 
 mkdirSync("public", { recursive: true });
 
-// One validated source → four downloadable artifacts (full + lite, PDF + Word).
-await renderToFile(<ResumePdf data={resume} />, "public/JhorlinDeArmas-Resume.pdf");
-await renderToFile(<ResumePdf data={liteResume} />, "public/JhorlinDeArmas-Resume-Lite.pdf");
-await writeResumeDocx(resume, "public/JhorlinDeArmas-Resume.docx");
-await writeResumeDocx(liteResume, "public/JhorlinDeArmas-Resume-Lite.docx");
+// One validated source → a PDF and a Word file per tier. The page's Download
+// buttons resolve to the file matching whichever tier the reader is viewing,
+// so the tier is in the filename and nothing collides in a Downloads folder.
+const tiers: Tier[] = ["lite", "full", "brag"];
+
+for (const tier of tiers) {
+  const data = resumeForTier(tier);
+  await renderToFile(<ResumePdf data={data} />, `public/${fileForTier(tier, "pdf")}`);
+  await writeResumeDocx(data, `public/${fileForTier(tier, "docx")}`);
+}
 
 console.log(
-  "Wrote public/JhorlinDeArmas-Resume{,-Lite}.pdf and public/JhorlinDeArmas-Resume{,-Lite}.docx"
+  "Wrote " +
+    tiers.flatMap((t) => [fileForTier(t, "pdf"), fileForTier(t, "docx")]).join(", ")
 );

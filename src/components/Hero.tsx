@@ -4,10 +4,12 @@ import { Downloads } from "@/components/Downloads";
 import { ViewSwitcher } from "@/components/ViewSwitcher";
 import { resume } from "@/content/resume";
 import { useHashView } from "@/lib/useHashView";
+import type { Tier } from "@/content/tiers";
 
 export function Hero() {
   const { profile } = resume;
   const view = useHashView();
+  const tier: Tier = view === "lite" ? "lite" : view === "extended" ? "brag" : "full";
   return (
     <header className="mx-auto w-full max-w-2xl px-8 pt-16 pb-6 sm:px-12">
       <div className="flex items-start justify-between gap-4">
@@ -24,7 +26,7 @@ export function Hero() {
       </div>
 
       <div className="mt-4 flex flex-col gap-3">
-        <Downloads />
+        <Downloads tier={tier} />
         <div className="flex flex-wrap gap-2">
           {profile.links.map((link) => (
             <Button key={link.url} variant="ghost" size="sm" asChild>

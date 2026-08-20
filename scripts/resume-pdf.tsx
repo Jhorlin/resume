@@ -62,7 +62,7 @@ export function ResumePdf({ data = resume }: { data?: Resume }) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Experience</Text>
           {data.experience.map((job) => (
-            <View key={`${job.company}-${job.start}`} wrap={false}>
+            <View key={`${job.company}-${job.start}`} minPresenceAhead={60}>
               <View style={styles.jobHeader}>
                 <Text style={styles.jobTitle}>
                   {job.role} · {job.company}

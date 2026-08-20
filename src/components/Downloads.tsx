@@ -1,25 +1,66 @@
-import { Download } from "lucide-react";
+import { ChevronDown, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { fileForTier } from "@/lib/downloads";
+import type { Tier } from "@/content/tiers";
 
-const FILES = [
-  { label: "PDF", href: "/JhorlinDeArmas-Resume.pdf" },
-  { label: "Word", href: "/JhorlinDeArmas-Resume.docx" },
-  { label: "PDF · Lite", href: "/JhorlinDeArmas-Resume-Lite.pdf" },
-  { label: "Word · Lite", href: "/JhorlinDeArmas-Resume-Lite.docx" },
+const ALL: { tier: Tier; label: string; blurb: string }[] = [
+  { tier: "lite", label: "Lite", blurb: "one-page-feel skim" },
+  { tier: "full", label: "Full", blurb: "every role and project" },
+  { tier: "brag", label: "Extended", blurb: "full plus the highlights reel" },
 ];
 
-export function Downloads() {
+/** Downloads follow the tier on screen; every version stays one click away. */
+export function Downloads({ tier }: { tier: Tier }) {
   return (
-    <div className="flex flex-wrap items-center gap-2">
-      <span className="text-sm font-medium text-muted-foreground">Download:</span>
-      {FILES.map((file, i) => (
-        <Button key={file.href} variant={i === 0 ? "default" : "outline"} size="sm" asChild>
-          <a href={file.href} download>
+    <div className="flex flex-col gap-2">
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="text-sm font-medium text-muted-foreground">Download:</span>
+        <Button size="sm" asChild>
+          <a href={`/${fileForTier(tier, "pdf")}`} download>
             <Download aria-hidden />
-            {file.label}
+            PDF
           </a>
         </Button>
-      ))}
+        <Button variant="outline" size="sm" asChild>
+          <a href={`/${fileForTier(tier, "docx")}`} download>
+            <Download aria-hidden />
+            Word
+          </a>
+        </Button>
+      </div>
+
+      <details className="group text-sm">
+        <summary className="inline-flex cursor-pointer list-none items-center gap-1 text-muted-foreground hover:text-foreground [&::-webkit-details-marker]:hidden">
+          All versions
+          <ChevronDown
+            aria-hidden
+            className="size-3.5 transition-transform group-open:rotate-180"
+          />
+        </summary>
+        <ul className="mt-2 flex flex-col gap-1.5 border-l pl-3">
+          {ALL.map((v) => (
+            <li key={v.tier} className="flex flex-wrap items-baseline gap-x-2">
+              <span className="font-medium">{v.label}</span>
+              <span className="text-xs text-muted-foreground">{v.blurb}</span>
+              <a
+                href={`/${fileForTier(v.tier, "pdf")}`}
+                download
+                className="underline underline-offset-4 hover:text-foreground"
+              >
+                PDF
+              </a>
+              <span className="text-muted-foreground">·</span>
+              <a
+                href={`/${fileForTier(v.tier, "docx")}`}
+                download
+                className="underline underline-offset-4 hover:text-foreground"
+              >
+                Word
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
     </div>
   );
 }

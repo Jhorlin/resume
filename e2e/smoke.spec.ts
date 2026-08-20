@@ -15,7 +15,7 @@ test("renders all sections without console errors", async ({ page }) => {
 
 test("serves the PDF download", async ({ page }) => {
   await page.goto("/");
-  const response = await page.request.get("/JhorlinDeArmas-Resume.pdf");
+  const response = await page.request.get("/JhorlinDeArmas-Resume-Full.pdf");
   expect(response.status()).toBe(200);
   expect((await response.body()).subarray(0, 5).toString()).toBe("%PDF-");
 });
@@ -30,7 +30,7 @@ test("theme toggle flips the dark class", async ({ page }) => {
 
 test("serves the Word download", async ({ page }) => {
   await page.goto("/");
-  const response = await page.request.get("/JhorlinDeArmas-Resume.docx");
+  const response = await page.request.get("/JhorlinDeArmas-Resume-Full.docx");
   expect(response.status()).toBe(200);
   // .docx is a ZIP — magic bytes "PK".
   expect((await response.body()).subarray(0, 2).toString()).toBe("PK");
@@ -83,4 +83,24 @@ test("tier transitions add and remove content without errors", async ({ page }) 
   await expect(channels).toHaveCount(0);
 
   expect(errors).toEqual([]);
+});
+
+test("downloads follow the selected tier, and all versions are reachable", async ({ page }) => {
+  const pdf = () => page.getByRole("link", { name: "PDF", exact: true });
+  await page.goto("/#/lite");
+  await expect(pdf()).toHaveAttribute("href", "/JhorlinDeArmas-Resume-Lite.pdf");
+  await page.getByRole("link", { name: "Full", exact: true }).click();
+  await expect(pdf()).toHaveAttribute("href", "/JhorlinDeArmas-Resume-Full.pdf");
+  await page.getByRole("link", { name: "Bragging", exact: true }).click();
+  await expect(pdf()).toHaveAttribute("href", "/JhorlinDeArmas-Resume-Extended.pdf");
+
+  // every variant is available from the disclosure
+  await page.getByText("All versions").click();
+  for (const f of ["Lite", "Full", "Extended"]) {
+    for (const ext of ["pdf", "docx"]) {
+      await expect(
+        page.locator(`a[href="/JhorlinDeArmas-Resume-${f}.${ext}"]`).first()
+      ).toBeVisible();
+    }
+  }
 });
