@@ -28,21 +28,58 @@ Vite · React 19 · Tailwind v4 · shadcn/ui · @react-pdf/renderer · SST v3
 - `RESUME_DOMAIN` — set to `jhorlin.com` to attach the custom domain.
 - `ENABLE_RUM=true` — provision CloudWatch RUM + Cognito guest identity.
 
-## Domain flip (after the No-IP → Route 53 transfer completes)
+## Domain flip (jhorlin.com)
 
-1. Decide the DNS strategy FIRST: `home.jhorlin.com` / `print.jhorlin.com`
-   are dynamic-DNS hostnames on No-IP Plus Managed DNS. If DNS stays on
-   No-IP nameservers, do NOT proceed — the custom domain requires the Route
-   53 zone to be authoritative.
-2. Confirm the registrar transfer finished (No-IP ticket #1065257) and the
-   `jhorlin.com` hosted zone exists in the glk AWS account (690429826899).
-3. Move nameserver delegation to the Route 53 zone (recreate any needed
-   records there first, including replacements for the dynamic-DNS
-   hostnames). ACM certificate DNS validation will hang indefinitely if
-   delegation still points at No-IP.
-4. In `.env`, uncomment `RESUME_DOMAIN=jhorlin.com`.
-5. `npx sst deploy --stage production` — SST provisions the ACM cert (DNS
-   validation) and alias records for `jhorlin.com` + `www` redirect.
+**Verified state — 2026-08-20**
+
+| Item | State |
+|---|---|
+| Route 53 hosted zone | ✅ `jhorlin.com` → `Z07750323T7G55ZH73TOL` (account 690429826899) |
+| ACM certificate | ⏳ `PENDING_VALIDATION` — `jhorlin.com` + `*.jhorlin.com`, created manually, unused |
+| **Nameserver delegation** | ❌ **still No-IP** (`ns1-5.no-ip.com`) — this is the blocker |
+| Live site | `https://d2vg337n62dalh.cloudfront.net` (no custom domain) |
+
+The zone is authoritative for nobody yet: the world still resolves
+`jhorlin.com` through No-IP, so the ACM validation CNAME sitting in Route 53
+is invisible to ACM and the certificate will never validate. **Do not set
+`RESUME_DOMAIN` until delegation moves** — `sst deploy` will hang waiting on
+validation.
+
+### Records that must survive the cutover
+
+Currently served by No-IP and **absent from the Route 53 zone**:
+
+| Hostname | Value | Notes |
+|---|---|---|
+| `jhorlin.com` | `104.51.180.232` | home IP; intentionally replaced by the CloudFront alias |
+| `home.jhorlin.com` | `104.51.180.232` | **dynamic DNS** — breaks on cutover |
+| `print.jhorlin.com` | `34.198.182.201` | **dynamic DNS** — breaks on cutover |
+| `MX` | `5 mail.jhorlin.com` | target has no A record; already non-functional |
+
+Route 53 dynamic updates are not automatic. Pick one before flipping:
+
+- **CNAME to the No-IP hostname** (recommended) — keep the No-IP dynamic
+  hostname (e.g. `something.ddns.net`) updating as it does today and point
+  `home`/`print` at it with CNAMEs. No new moving parts.
+- **Route 53 updater** — a small client/Lambda calling
+  `route53 change-resource-record-sets` when the WAN IP changes.
+- **Drop them** — if the hostnames are no longer used.
+
+### Cutover order
+
+1. Pre-stage `home`, `print`, and any MX records in the Route 53 zone so
+   nothing breaks the moment delegation moves.
+2. At the No-IP registrar, set the nameservers to this zone's four:
+   `ns-78.awsdns-09.com`, `ns-636.awsdns-15.net`,
+   `ns-1198.awsdns-21.org`, `ns-1867.awsdns-41.co.uk`.
+3. Wait for propagation, then confirm:
+   `dig +short NS jhorlin.com @8.8.8.8` returns the AWS nameservers.
+4. ACM validates on its own within minutes once Route 53 answers.
+5. Uncomment `RESUME_DOMAIN=jhorlin.com` in `.env`.
+6. `npx sst deploy --stage production` — SST provisions its own DNS-validated
+   certificate plus alias records for `jhorlin.com` and the `www` redirect.
+   (The manual wildcard cert above is not used by SST; delete it afterward or
+   keep it for other subdomains.)
 
 ## Content updates
 
