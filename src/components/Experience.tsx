@@ -13,7 +13,19 @@ export function Experience() {
           <li key={`${job.company}-${job.start}`}>
             <div className="flex flex-wrap items-baseline justify-between gap-x-4">
               <h3 className="font-semibold">
-                {job.role} · {job.company}
+                {job.role} ·{" "}
+                {job.url ? (
+                  <a
+                    href={job.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline underline-offset-4 decoration-muted-foreground/40 hover:decoration-current"
+                  >
+                    {job.company}
+                  </a>
+                ) : (
+                  job.company
+                )}
               </h3>
               <span className="text-sm text-muted-foreground">{formatRange(job.start, job.end)}</span>
             </div>

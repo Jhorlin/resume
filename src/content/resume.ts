@@ -40,6 +40,7 @@ const data: Resume = {
   experience: [
     {
       company: "Skillfaber (Independent)",
+      url: "https://skillfaber.com",
       role: "Founder & Principal Engineer",
       location: "Remote",
       start: "2025-01",

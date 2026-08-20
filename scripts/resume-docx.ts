@@ -71,7 +71,15 @@ export function buildResumeDoc(data: Resume): Document {
         spacing: { before: 120, after: 20 },
         tabStops: [{ type: TabStopType.RIGHT, position: TabStopPosition.MAX }],
         children: [
-          new TextRun({ text: `${job.role} · ${job.company}`, bold: true, size: 22 }),
+          new TextRun({ text: `${job.role} · `, bold: true, size: 22 }),
+          job.url
+            ? new ExternalHyperlink({
+                link: job.url,
+                children: [
+                  new TextRun({ text: job.company, bold: true, size: 22, color: ACCENT, underline: {} }),
+                ],
+              })
+            : new TextRun({ text: job.company, bold: true, size: 22 }),
           new TextRun({ text: `\t${formatRange(job.start, job.end)}`, size: 20, color: MUTED }),
         ],
       }),

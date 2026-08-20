@@ -9,6 +9,8 @@ export const linkSchema = z.object({
 
 export const experienceSchema = z.object({
   company: z.string().min(1),
+  /** Optional company website; renders the company name as a link. */
+  url: z.url().optional(),
   role: z.string().min(1),
   location: z.string().min(1),
   start: month,

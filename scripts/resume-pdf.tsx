@@ -65,7 +65,8 @@ export function ResumePdf({ data = resume }: { data?: Resume }) {
             <View key={`${job.company}-${job.start}`} minPresenceAhead={60}>
               <View style={styles.jobHeader}>
                 <Text style={styles.jobTitle}>
-                  {job.role} · {job.company}
+                  {job.role} ·{" "}
+                  {job.url ? <Link src={job.url}>{job.company}</Link> : job.company}
                 </Text>
                 <Text style={styles.jobDates}>{formatRange(job.start, job.end)}</Text>
               </View>
