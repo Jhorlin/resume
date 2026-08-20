@@ -3,7 +3,7 @@ import { resumeSchema, type Resume } from "./schema";
 const data: Resume = {
   profile: {
     name: "Jhorlin De Armas",
-    headline: "AI Agent Infrastructure & Platform Engineer",
+    headline: "Principal AI Engineer, Agent Infrastructure",
     location: "Orlando, FL · Remote",
     email: "jhorlin@gmail.com",
     links: [
