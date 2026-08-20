@@ -104,3 +104,34 @@ test("downloads follow the selected tier, and all versions are reachable", async
     }
   }
 });
+
+test("search finds results across tiers and jumps to them", async ({ page }) => {
+  await page.goto("/#/lite");
+  // Wait for hydration so the global key listener is attached.
+  const trigger = page.getByRole("button", { name: /Search/i });
+  await expect(trigger).toBeVisible();
+
+  // Opens with the keyboard, from anywhere on the page.
+  await page.keyboard.press("/");
+  const box = page.getByPlaceholder(/Search every version/);
+  await expect(box).toBeVisible();
+
+  // "Okta" only appears in Full/Extended — from Lite it must still be findable
+  // and labelled as living elsewhere.
+  await box.fill("okta");
+  const first = page.getByRole("dialog").getByRole("button").first();
+  await expect(first).toContainText(/in Full/);
+
+  // Opening it switches tier, scrolls to the entry and flashes it.
+  await first.click();
+  await expect(page).toHaveURL(/#\/($|extended)/); // Full's canonical hash is "#/"
+  await expect(page.locator("[data-sid].search-flash")).toBeVisible();
+
+  // A term present in every tier stays put.
+  await page.goto("/#/lite");
+  await expect(page.getByRole("button", { name: /Search/i })).toBeVisible();
+  await page.keyboard.press("/");
+  await page.getByPlaceholder(/Search every version/).fill("checkpoint");
+  await page.getByRole("dialog").getByRole("button").first().click();
+  await expect(page).toHaveURL(/#\/lite/);
+});

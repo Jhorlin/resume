@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Section } from "@/components/Section";
 import { useResume } from "@/content/context";
 import { listItem } from "@/lib/anim";
+import { sid } from "@/lib/search";
 
 export function Projects() {
   const resume = useResume();
@@ -16,13 +17,13 @@ export function Projects() {
           <Card>
             <CardHeader>
               <CardTitle>{project.name}</CardTitle>
-              <CardDescription>{project.description}</CardDescription>
+              <CardDescription data-sid={sid(project.description)}>{project.description}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
               {project.outcomes.length > 0 && (
                 <ul className="list-disc pl-5 text-sm leading-relaxed">
                   {project.outcomes.map((outcome) => (
-                    <li key={outcome}>{outcome}</li>
+                    <li key={outcome} data-sid={sid(outcome)}>{outcome}</li>
                   ))}
                 </ul>
               )}

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Downloads } from "@/components/Downloads";
 import { ViewSwitcher } from "@/components/ViewSwitcher";
+import { Search } from "@/components/Search";
 import { resume } from "@/content/resume";
 import { useHashView } from "@/lib/useHashView";
 import type { Tier } from "@/content/tiers";
@@ -21,8 +22,9 @@ export function Hero() {
         <ThemeToggle />
       </div>
 
-      <div className="mt-6">
+      <div className="mt-6 flex flex-wrap items-center gap-3">
         <ViewSwitcher active={view} />
+        <Search tier={tier} />
       </div>
 
       <div className="mt-4 flex flex-col gap-3">

@@ -3,6 +3,7 @@ import { Section } from "@/components/Section";
 import { useResume } from "@/content/context";
 import { formatRange } from "@/lib/dates";
 import { listItem } from "@/lib/anim";
+import { sid } from "@/lib/search";
 
 export function Experience() {
   const resume = useResume();
@@ -33,7 +34,7 @@ export function Experience() {
             <ul className="mt-2 list-disc space-y-1 pl-5 leading-relaxed">
               <AnimatePresence initial={false}>
                 {job.achievements.map((achievement) => (
-                  <motion.li key={achievement} {...listItem}>
+                  <motion.li key={achievement} data-sid={sid(achievement)} {...listItem}>
                     {achievement}
                   </motion.li>
                 ))}

@@ -78,3 +78,17 @@
     @apply bg-background text-foreground antialiased;
   }
 }
+
+/* Search: briefly ring the entry a result jumped to, so the eye finds it. */
+@keyframes search-flash {
+  from { background-color: color-mix(in oklab, var(--primary) 16%, transparent); }
+  to   { background-color: transparent; }
+}
+.search-flash {
+  animation: search-flash 1.6s ease-out both;
+  border-radius: 0.3rem;
+  scroll-margin-top: 6rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  .search-flash { animation: none; outline: 2px solid var(--primary); outline-offset: 2px; }
+}
