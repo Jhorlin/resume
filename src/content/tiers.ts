@@ -18,6 +18,14 @@ const LITE_ACHIEVEMENTS: Record<string, number[]> = {
   "Highwinds Software": [0], // CDN cache index
 };
 
+/** Lite keeps only the categories a screener scans for. */
+const LITE_SKILLS = [
+  "Agent Infrastructure",
+  "Models & Providers",
+  "Cloud, Infra & Delivery",
+  "Languages",
+];
+
 const LITE_PROJECTS = [
   "Skillfaber — role-based agent platform",
   "Notitia — serverless RAG",
@@ -33,6 +41,9 @@ export const liteResume: Resume = {
       ? { ...role, achievements: picks.map((i) => role.achievements[i]) }
       : { ...role, achievements: role.achievements.slice(0, 2) };
   }),
+  skills: LITE_SKILLS.map(
+    (category) => resume.skills.find((g) => g.category === category)!
+  ).filter(Boolean),
   projects: LITE_PROJECTS.map(
     (name) => resume.projects.find((p) => p.name === name)!
   ).filter(Boolean),

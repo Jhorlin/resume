@@ -4,7 +4,7 @@ import type { Resume } from "../src/content/schema";
 import { formatRange } from "../src/lib/dates";
 
 const styles = StyleSheet.create({
-  page: { padding: 40, fontSize: 9.5, fontFamily: "Helvetica", color: "#111", lineHeight: 1.4 },
+  page: { padding: 40, fontSize: 10.5, fontFamily: "Helvetica", color: "#111", lineHeight: 1.4 },
   name: { fontSize: 20, fontFamily: "Helvetica-Bold" },
   headline: { fontSize: 11, marginTop: 2, color: "#444" },
   contact: { marginTop: 4, color: "#444" },

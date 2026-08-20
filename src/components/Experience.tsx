@@ -18,7 +18,7 @@ export function Experience() {
               <span className="text-sm text-muted-foreground">{formatRange(job.start, job.end)}</span>
             </div>
             <p className="text-sm text-muted-foreground">{job.location}</p>
-            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-relaxed">
+            <ul className="mt-2 list-disc space-y-1 pl-5 leading-relaxed">
               <AnimatePresence initial={false}>
                 {job.achievements.map((achievement) => (
                   <motion.li key={achievement} {...listItem}>

@@ -27,7 +27,7 @@ function bullet(text: string): Paragraph {
   return new Paragraph({
     bullet: { level: 0 },
     spacing: { after: 40 },
-    children: [new TextRun({ text, size: 19 })],
+    children: [new TextRun({ text, size: 21 })],
   });
 }
 
@@ -45,17 +45,17 @@ export function buildResumeDoc(data: Resume): Document {
     new Paragraph({
       spacing: { after: 80 },
       children: [
-        new TextRun({ text: `${profile.location} · ${profile.email}`, size: 18, color: MUTED }),
+        new TextRun({ text: `${profile.location} · ${profile.email}`, size: 20, color: MUTED }),
       ],
     }),
     new Paragraph({
       spacing: { after: 120 },
       children: profile.links.flatMap((link, i) => [
-        ...(i > 0 ? [new TextRun({ text: "   ·   ", size: 18, color: MUTED })] : []),
+        ...(i > 0 ? [new TextRun({ text: "   ·   ", size: 20, color: MUTED })] : []),
         new ExternalHyperlink({
           link: link.url,
           children: [
-            new TextRun({ text: link.label, size: 18, color: ACCENT, underline: {} }),
+            new TextRun({ text: link.label, size: 20, color: ACCENT, underline: {} }),
           ],
         }),
       ]),
@@ -71,8 +71,8 @@ export function buildResumeDoc(data: Resume): Document {
         spacing: { before: 120, after: 20 },
         tabStops: [{ type: TabStopType.RIGHT, position: TabStopPosition.MAX }],
         children: [
-          new TextRun({ text: `${job.role} · ${job.company}`, bold: true, size: 20 }),
-          new TextRun({ text: `\t${formatRange(job.start, job.end)}`, size: 18, color: MUTED }),
+          new TextRun({ text: `${job.role} · ${job.company}`, bold: true, size: 22 }),
+          new TextRun({ text: `\t${formatRange(job.start, job.end)}`, size: 20, color: MUTED }),
         ],
       }),
       ...job.achievements.map(bullet),
@@ -86,8 +86,8 @@ export function buildResumeDoc(data: Resume): Document {
         new Paragraph({
           spacing: { before: 100, after: 20 },
           children: [
-            new TextRun({ text: project.name, bold: true, size: 19 }),
-            new TextRun({ text: ` — ${project.description}`, size: 19 }),
+            new TextRun({ text: project.name, bold: true, size: 21 }),
+            new TextRun({ text: ` — ${project.description}`, size: 21 }),
           ],
         }),
         ...project.outcomes.map(bullet),
@@ -97,11 +97,11 @@ export function buildResumeDoc(data: Resume): Document {
           new Paragraph({
             spacing: { after: 40 },
             children: project.links.flatMap((link, i) => [
-              ...(i > 0 ? [new TextRun({ text: "   ·   ", size: 17, color: MUTED })] : []),
+              ...(i > 0 ? [new TextRun({ text: "   ·   ", size: 20, color: MUTED })] : []),
               new ExternalHyperlink({
                 link: link.url,
                 children: [
-                  new TextRun({ text: link.label, size: 17, color: ACCENT, underline: {} }),
+                  new TextRun({ text: link.label, size: 20, color: ACCENT, underline: {} }),
                 ],
               }),
             ]),
@@ -119,8 +119,8 @@ export function buildResumeDoc(data: Resume): Document {
         new Paragraph({
           spacing: { after: 40 },
           children: [
-            new TextRun({ text: `${group.category}: `, bold: true, size: 19 }),
-            new TextRun({ text: group.items.join(", "), size: 19 }),
+            new TextRun({ text: `${group.category}: `, bold: true, size: 21 }),
+            new TextRun({ text: group.items.join(", "), size: 21 }),
           ],
         })
     ),
@@ -132,7 +132,7 @@ export function buildResumeDoc(data: Resume): Document {
       children: [
         new TextRun({
           text: `${profile.education.degree}, ${profile.education.school} (${profile.education.year})`,
-          size: 19,
+          size: 21,
         }),
       ],
     }),
@@ -150,7 +150,7 @@ export function buildResumeDoc(data: Resume): Document {
     sections: [
       {
         properties: {
-          page: { margin: { top: 720, bottom: 720, left: 720, right: 720 } },
+          page: { margin: { top: 800, bottom: 800, left: 800, right: 800 } },
         },
         children: [
           ...header,

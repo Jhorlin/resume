@@ -29,7 +29,7 @@ export default function App() {
         <main>
           <Hero />
           {view === "extended" && (
-            <div className="mx-auto max-w-3xl px-8 sm:px-12">
+            <div className="mx-auto max-w-2xl px-8 sm:px-12">
               <div className="rounded-lg border border-primary/40 bg-primary/5 px-5 py-4">
                 <p className="text-sm font-semibold tracking-tight">
                   Now you're just bragging.
@@ -41,7 +41,7 @@ export default function App() {
               </div>
             </div>
           )}
-          <div className="mx-auto max-w-3xl px-8 sm:px-12">
+          <div className="mx-auto max-w-2xl px-8 sm:px-12">
             <Separator />
           </div>
           <Highlights />
@@ -50,7 +50,7 @@ export default function App() {
           {view === "extended" && (
             <Suspense
               fallback={
-                <p className="mx-auto max-w-3xl px-8 py-10 text-sm text-muted-foreground sm:px-12">
+                <p className="mx-auto max-w-2xl px-8 py-10 text-sm text-muted-foreground sm:px-12">
                   Loading architecture diagrams…
                 </p>
               }
@@ -59,7 +59,7 @@ export default function App() {
             </Suspense>
           )}
           <Skills />
-          <div className="mx-auto max-w-3xl px-8 sm:px-12">
+          <div className="mx-auto max-w-2xl px-8 sm:px-12">
             <Separator />
           </div>
           <Footer />
