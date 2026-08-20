@@ -31,7 +31,8 @@ export const resumeSchema = z.object({
     name: z.string().min(1),
     headline: z.string().min(1),
     location: z.string().min(1),
-    email: z.email(),
+    /** Contact addresses, primary first. */
+    emails: z.array(z.email()).min(1),
     links: z.array(linkSchema).min(1),
     education: z.object({
       school: z.string().min(1),

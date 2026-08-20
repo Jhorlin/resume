@@ -6,7 +6,7 @@ const valid = {
     name: "Test Person",
     headline: "Engineer",
     location: "Orlando, FL",
-    email: "test@example.com",
+    emails: ["test@example.com"],
     links: [{ label: "LinkedIn", url: "https://linkedin.com/in/test" }],
     education: { school: "UCF", degree: "BS Computer Science", year: 2006 },
   },

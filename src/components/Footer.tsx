@@ -8,9 +8,14 @@ export function Footer() {
         {profile.education.degree}, {profile.education.school} ({profile.education.year})
       </p>
       <p className="mt-2">
-        <a href={`mailto:${profile.email}`} className="underline underline-offset-4">
-          {profile.email}
-        </a>
+        {profile.emails.map((email, i) => (
+          <span key={email}>
+            {i > 0 && " · "}
+            <a href={`mailto:${email}`} className="underline underline-offset-4">
+              {email}
+            </a>
+          </span>
+        ))}
         {" · "}
         {profile.location}
       </p>

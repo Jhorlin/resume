@@ -50,7 +50,7 @@ export function ResumePdf({ data = resume }: { data?: Resume }) {
         <Text style={styles.name}>{profile.name}</Text>
         <Text style={styles.headline}>{profile.headline}</Text>
         <Text style={styles.contact}>
-          {profile.location} · {profile.email} ·{" "}
+          {profile.location} · {profile.emails.join(" · ")} ·{" "}
           {profile.links.map((link) => link.url).join(" · ")}
         </Text>
 

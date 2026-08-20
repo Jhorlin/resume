@@ -45,7 +45,7 @@ export function buildResumeDoc(data: Resume): Document {
     new Paragraph({
       spacing: { after: 80 },
       children: [
-        new TextRun({ text: `${profile.location} · ${profile.email}`, size: 20, color: MUTED }),
+        new TextRun({ text: `${profile.location} · ${profile.emails.join(" · ")}`, size: 20, color: MUTED }),
       ],
     }),
     new Paragraph({

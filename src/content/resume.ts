@@ -5,7 +5,7 @@ const data: Resume = {
     name: "Jhorlin De Armas",
     headline: "Principal AI Engineer, Agent Infrastructure",
     location: "Orlando, FL · Remote",
-    email: "jhorlin@gmail.com",
+    emails: ["jhorlin@gmail.com", "jhorlin@skillfaber.com"],
     links: [
       { label: "LinkedIn", url: "https://www.linkedin.com/in/jhorlin/" },
       {
