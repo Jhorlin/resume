@@ -3,7 +3,7 @@ import { resume } from "@/content/resume";
 export function Footer() {
   const { profile } = resume;
   return (
-    <footer className="mx-auto w-full max-w-3xl px-6 py-12 text-sm text-muted-foreground">
+    <footer className="mx-auto w-full max-w-3xl px-8 py-12 text-sm text-muted-foreground sm:px-12">
       <p>
         {profile.education.degree}, {profile.education.school} ({profile.education.year})
       </p>
