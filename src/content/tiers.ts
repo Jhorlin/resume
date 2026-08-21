@@ -57,6 +57,7 @@ export const liteResume: Resume = {
 export const extendedResume: Resume = {
   ...resume,
   highlights: resume.extendedHighlights ?? resume.highlights,
+  projects: [...resume.projects, ...(resume.extendedProjects ?? [])],
 };
 
 export type Tier = "lite" | "full" | "extended";

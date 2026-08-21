@@ -45,6 +45,8 @@ export const resumeSchema = z.object({
   extendedHighlights: z.array(z.string().min(1)).min(3).max(12).optional(),
   experience: z.array(experienceSchema).min(1),
   projects: z.array(projectSchema).min(1),
+  /** Deep-dive project cards, appended only on the Extended view. */
+  extendedProjects: z.array(projectSchema).optional(),
   skills: z.array(
     z.object({ category: z.string().min(1), items: z.array(z.string().min(1)).min(1) })
   ).min(1),

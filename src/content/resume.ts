@@ -244,6 +244,46 @@ const data: Resume = {
       links: [],
     },
   ],
+  extendedProjects: [
+    {
+      name: "sfSync — Salesforce to Postgres in near real time",
+      description:
+        "Salesforce quoted roughly $250k a year for a sync whose floor was five minutes. I built the alternative: one extracted metadata file drives code generation for the entire pipeline, and changes stream out of Salesforce as they happen.",
+      outcomes: [
+        "One metadata file fans out to seven generated artifacts: the Liquibase changelog, a Go ORM, TypeORM entities, a GraphQL layer, an ERD, 107 per-object Apex triggers, and the integration test suite",
+        "Schema reconciliation by diffing a freshly generated changelog against the committed migrations in Docker, so a Salesforce field change becomes a reviewed migration CI applies",
+        "Push-based and nearly free to run: triggers publish platform events, batches land in S3 through a direct API Gateway service proxy with no compute in the ingest path, and a Go Lambda upserts them guarded by SystemModstamp so replays and out-of-order deliveries are no-ops",
+        "Multi-select picklists map to Postgres text arrays, round-tripping cleanly back to Salesforce",
+      ],
+      tech: ["Go", "TypeScript", "Salesforce Apex", "Platform Events", "Liquibase", "Aurora PostgreSQL", "AWS Lambda", "API Gateway", "SQS"],
+      links: [],
+    },
+    {
+      name: "Ocean — lead marketplace and customer portal",
+      description:
+        "The customer-facing product built on top of sfSync: partners sign in to see, claim, and reassign the opportunities they are buying, and watch campaign performance without anyone exporting a spreadsheet.",
+      outcomes: [
+        "Sales reps claim opportunities and lead managers reassign them, with writes routed back through Salesforce so its business rules stay authoritative",
+        "Per-user embedded Amazon QuickSight analytics, scoped by user ARN with Cognito groups synced into QuickSight at token generation",
+        "White-labeled across 27 partner domains from a single distribution, with branding resolved at runtime from the hostname",
+        "Reads bypass Salesforce entirely against the synced Postgres replica, dodging API limits and per-seat licensing",
+      ],
+      tech: ["React", "AWS AppSync", "Cognito", "Amazon QuickSight", "Aurora PostgreSQL", "Salesforce Apex REST", "Stripe", "SST"],
+      links: [],
+    },
+    {
+      name: "Suggested Campaigns — funder-aware pitch targeting",
+      description:
+        "Appointment setting lives or dies on not wasting a prospect's time. This tool ran inside Salesforce on the prospect record and worked out which campaigns could honestly be pitched.",
+      outcomes: [
+        "Deduplicated by who funded a campaign rather than by the campaign itself, so a prospect already met under one OEM- or reseller-funded program was never re-pitched to that same funder under a different banner",
+        "Cut appointment rejections caused by 'we have already met'",
+        "Shipped first in native Salesforce JavaScript, then rebuilt as a React app by the team under my direction",
+      ],
+      tech: ["Salesforce Apex", "SOQL", "Lightning / Aura", "React", "TypeScript"],
+      links: [],
+    },
+  ],
   skills: [
     {
       category: "Agent Infrastructure",

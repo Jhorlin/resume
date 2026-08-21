@@ -73,7 +73,7 @@ export function buildIndex(): SearchEntry[] {
   for (const job of resume.experience) {
     for (const a of job.achievements) add(out, a, "Experience", `${job.role} · ${job.company}`);
   }
-  for (const p of resume.projects) {
+  for (const p of [...resume.projects, ...(resume.extendedProjects ?? [])]) {
     add(out, p.description, "Projects", p.name);
     for (const o of p.outcomes) add(out, o, "Projects", p.name);
   }
