@@ -80,7 +80,7 @@ const data: Resume = {
     },
     {
       company: "Kazzcade",
-      role: "Director of Software Development",
+      role: "Co-founder & Director of Software Development",
       location: "Lake Mary, FL",
       start: "2017-01",
       end: "2024-01",
